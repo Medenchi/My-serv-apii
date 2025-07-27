@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: owncast
+    env: docker
+    dockerfilePath: ./Dockerfile
+    repo: https://github.com/owncast/owncast # Мы используем официальный код Owncast
+    healthCheckPath: /
+    envVars:
+      - key: STREAM_KEY
+        generateValue: true # Render сам сгенерирует вам секретный ключ трансляции
+    disk:
+      name: owncast-data
+      mountPath: /app/data
+      sizeGB: 1
